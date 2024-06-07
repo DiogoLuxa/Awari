@@ -1,8 +1,12 @@
-# React + Vite
+# Prática: Lista de Usuários
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Neste projeto, as tarefas foram:
 
-Currently, two official plugins are available:
+- criar uma nova aplicação React.js;
+- criar um componente responsável por exibir as informações sobre usuários na aplicação (item);
+- criar um componente responsável por listar os usuários como itens (list);
+- exibir o componente list na página principal (o componente list deve receber a lista de usuários por meio desta página).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request com melhorias para este projeto.
