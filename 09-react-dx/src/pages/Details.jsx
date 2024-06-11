@@ -1,11 +1,11 @@
-// hooks
-import { useParams } from "react-router-dom";
+// react
+import React from 'react';
 
 // router
-import { Link } from "react-router-dom";
+import { useParams, Link } from 'react-router-dom';
 
 // data
-import users from "../data/data";
+import users from '../data/data';
 
 function Details() {
   const { id } = useParams();

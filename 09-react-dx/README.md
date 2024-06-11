@@ -1,8 +1,14 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Neste projeto as tarefas foram:
 
-Currently, two official plugins are available:
+Adicionar à configuração do .eslintrc as seguintes regras:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- semi com o chave/valor “error” e “always”, para sempre utilizar “;” no projeto;
+- quotes com o chave/valor “error” e “single”, para sempre utilizar aspas simples no projeto;
+- adicionar o comando lint aos scripts do projeto eslint ./src/\*_/_.{js,jsx};
+- criar o arquivo .editorconfig com uma configuração padrão, para padronizar a indentação do código;
+- instalar o CommitLint com @commitlint/config-conventional para estender o padrão Conventional Commits;
+- instalar o Husk;
+  adicionar o hook pre-commit para executar o comando nom run lint;
+  adicionar o hook commit-msg para validar as mensagens de commit.
