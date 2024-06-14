@@ -32,6 +32,7 @@ const PokedexProvider = ({ children }) => {
       } catch (err) {
         setError(err.message);
       } finally {
+        // setTimeout(() => setLoading(false), 5000);
         setLoading(false);
       }
     };

@@ -10,6 +10,12 @@ Adicionar à configuração do .eslintrc as seguintes regras:
 - deve-se armazenar os detalhes obtidos em useState;
 - por fim, exibir nome e imagem dos Pokémons na página.
 
+# Imagem do projeto final
+
+![list](./src/assets/tela-lista.jpeg)
+![loading](./src/assets/tela-load.jpg)
+![error](./src/assets/tela-error.jpeg)
+
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request com melhorias para este projeto.
