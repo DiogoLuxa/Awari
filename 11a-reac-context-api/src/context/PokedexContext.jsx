@@ -1,39 +1,65 @@
-// hooks
-import { React, createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from "react";
 
-// propTypes
-import PropTypes from 'prop-types';
+// prop-types
+import PropTypes from "prop-types";
+
+// utils
+import { fetchPokemonList, fetchPokemonDetails } from "../utils/api";
 
 // context
 const PokedexContext = createContext();
 
-// utils
-import { fetchPokemonList, fetchPokemonDetails } from '../utils/api';
+// local storage
+const likedStorage = JSON.parse(localStorage.getItem("liked")) || [];
 
-// provider
 const PokedexProvider = ({ children }) => {
   // states
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [liked, setLiked] = useState([]);
+  const [error, setError] = useState("");
+  const [liked, setLiked] = useState(likedStorage);
+  const [count, setCount] = useState(0);
+  const [clickedPokemon, setClickedPokemon] = useState(null);
+  const [showHeart, setShowHeart] = useState(null);
+  const [timeoutId, setTimeoutId] = useState(null);
 
-  console.log(error);
+  // functions
+  function handleDoubleClick(pokemon) {
+    setClickedPokemon(pokemon);
 
-  // fetch data
+    if (count === 1) {
+      setCount(count + 1);
+    } else {
+      setCount(1);
+      const id = setTimeout(() => {
+        setCount(0);
+      }, 300);
+      setTimeoutId(id);
+    }
+  }
+
+  function handleLike(pokemon) {
+    setLiked((prevLiked) => {
+      if (prevLiked.includes(pokemon)) {
+        return prevLiked.filter((likedPokemon) => likedPokemon !== pokemon);
+      }
+      return [...prevLiked, pokemon];
+    });
+  }
+
+  // effects
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchPokemonList();
         const promises = data.map((pokemon) =>
-          fetchPokemonDetails(pokemon.url),
+          fetchPokemonDetails(pokemon.url)
         );
         const pokemonsData = await Promise.all(promises);
         setPokemons(pokemonsData);
       } catch (err) {
         setError(err.message);
       } finally {
-        // setTimeout(() => setLoading(false), 5000);
         setLoading(false);
       }
     };
@@ -41,8 +67,41 @@ const PokedexProvider = ({ children }) => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (count === 2) {
+      setCount(0);
+      clearTimeout(timeoutId);
+      setShowHeart(clickedPokemon);
+      setTimeout(() => {
+        setShowHeart(null);
+      }, 1000);
+      setLiked((prevLiked) => {
+        if (prevLiked.includes(clickedPokemon)) {
+          return prevLiked.filter(
+            (likedPokemon) => likedPokemon !== clickedPokemon
+          );
+        }
+        return [...prevLiked, clickedPokemon];
+      });
+    }
+  }, [count, clickedPokemon, timeoutId]);
+
+  useEffect(() => {
+    localStorage.setItem("liked", JSON.stringify(liked));
+  }, [liked]);
+
   return (
-    <PokedexContext.Provider value={{ pokemons, loading, error }}>
+    <PokedexContext.Provider
+      value={{
+        pokemons,
+        loading,
+        error,
+        handleDoubleClick,
+        liked,
+        handleLike,
+        showHeart,
+      }}
+    >
       {children}
     </PokedexContext.Provider>
   );

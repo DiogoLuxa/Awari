@@ -1,7 +1,7 @@
-import { React, useContext } from 'react';
+import { React, useContext } from "react";
 
 // context
-import { PokedexContext } from '../context/PokedexContext';
+import { PokedexContext } from "../context/PokedexContext";
 
 // components: shadcn
 import {
@@ -11,18 +11,20 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from "@/components/ui/card";
 
 // components
-import HeartIcon from './HeartIcon';
+import HeartIcon from "./HeartIcon";
+import HeartIconAnimation from "./HeartIconAnimation";
 
-// img
-import heart from '../assets/heart.svg';
+// styles
+import "./CardList.css";
 
 // CardList
 function CardList() {
   // context
-  const { pokemons } = useContext(PokedexContext);
+  const { pokemons, handleDoubleClick, liked, showHeart } =
+    useContext(PokedexContext);
 
   // render
   return (
@@ -34,24 +36,30 @@ function CardList() {
             <CardHeader>
               <CardTitle className="capitalize">{name}</CardTitle>
               <CardDescription>Pokemon</CardDescription>
-              <HeartIcon />
+              <HeartIcon id={id} liked={liked.includes(id) ? true : false} />
             </CardHeader>
+            <HeartIconAnimation
+              liked={liked.includes(id) ? true : false}
+              showHeart={showHeart === id}
+            />
+            {/* {showHeart === id && <div className="heart-animation">❤️</div>} */}
             <CardContent>
               <img
-                src={sprites.other['official-artwork'].front_default}
+                onClick={() => handleDoubleClick(id)}
+                src={sprites.other["official-artwork"].front_default}
                 alt={name}
               />
             </CardContent>
             <CardFooter className="flex gap-x-2 bg-gray-200 py-2 px-4">
               <p className="text-sm">
-                <span className="font-medium">Types:</span>{' '}
-                {types.map((type) => type.type.name).join(', ')}
+                <span className="font-bold">Types:</span>{" "}
+                {types.map((type) => type.type.name).join(", ")}
               </p>
               <p className="text-sm">
-                <span className="font-medium">Height:</span> {height / 10}m
+                <span className="font-bold">Height:</span> {height / 10}m
               </p>
               <p className="text-sm">
-                <span className="font-medium">Weight:</span> {weight / 10}kg
+                <span className="font-bold">Weight:</span> {weight / 10}kg
               </p>
             </CardFooter>
           </Card>

@@ -3,7 +3,7 @@ import { useContext } from "react";
 // context
 import { PokedexContext } from "../context/PokedexContext";
 
-function HeartIcon({ id, liked }) {
+function HeartIconAnimation({ liked, showHeart }) {
   // context
   const { handleLike } = useContext(PokedexContext);
   return (
@@ -12,9 +12,9 @@ function HeartIcon({ id, liked }) {
         e.stopPropagation();
         handleLike(id);
       }}
-      className={`w-7 absolute right-0 mr-5 fill-current cursor-pointer ${
+      className={`w-20 absolute inset-1/2 fill-current ${
         liked ? "text-red-500" : "text-gray-300"
-      }`}
+      } ${showHeart ? "heart-animation" : "hidden"}`}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -24,4 +24,4 @@ function HeartIcon({ id, liked }) {
   );
 }
 
-export default HeartIcon;
+export default HeartIconAnimation;

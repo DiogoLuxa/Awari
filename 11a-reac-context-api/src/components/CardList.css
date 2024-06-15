@@ -1,0 +1,19 @@
+.heart-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  animation: heart-fade 1s forwards;
+}
+
+@keyframes heart-fade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
