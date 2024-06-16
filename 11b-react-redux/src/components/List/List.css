@@ -1,0 +1,14 @@
+.list-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px 10px;
+  background-color: aliceblue;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 20px;
+  width: 1200px;
+}
