@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 
 // context
-import { PokedexContext } from "../context/PokedexContext";
+import { PokedexContext } from '../context/PokedexContext';
 
 function HeartIcon({ id, liked }) {
   // context
@@ -13,7 +14,7 @@ function HeartIcon({ id, liked }) {
         handleLike(id);
       }}
       className={`w-7 absolute right-0 mr-5 fill-current cursor-pointer ${
-        liked ? "text-red-500" : "text-gray-300"
+        liked ? 'text-red-500' : 'text-gray-300'
       }`}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
@@ -23,5 +24,10 @@ function HeartIcon({ id, liked }) {
     </svg>
   );
 }
+
+HeartIcon.propTypes = {
+  id: PropTypes.number.isRequired,
+  liked: PropTypes.bool.isRequired,
+};
 
 export default HeartIcon;

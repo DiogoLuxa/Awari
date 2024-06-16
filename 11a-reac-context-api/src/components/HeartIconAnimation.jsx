@@ -1,20 +1,26 @@
-import { useContext } from "react";
+import React, { useContext } from 'react';
+
+import PropTypes from 'prop-types';
 
 // context
-import { PokedexContext } from "../context/PokedexContext";
 
-function HeartIconAnimation({ liked, showHeart }) {
+import { PokedexContext } from '../context/PokedexContext';
+
+function HeartIconAnimation({ liked, showHeart, id }) {
   // context
+
   const { handleLike } = useContext(PokedexContext);
+
   return (
     <svg
       onClick={(e) => {
         e.stopPropagation();
+
         handleLike(id);
       }}
       className={`w-20 absolute inset-1/2 fill-current ${
-        liked ? "text-red-500" : "text-gray-300"
-      } ${showHeart ? "heart-animation" : "hidden"}`}
+        liked ? 'text-red-500' : 'text-gray-300'
+      } ${showHeart ? 'heart-animation' : 'hidden'}`}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
@@ -23,5 +29,13 @@ function HeartIconAnimation({ liked, showHeart }) {
     </svg>
   );
 }
+
+HeartIconAnimation.propTypes = {
+  liked: PropTypes.bool.isRequired,
+
+  showHeart: PropTypes.bool.isRequired,
+
+  id: PropTypes.number.isRequired,
+};
 
 export default HeartIconAnimation;

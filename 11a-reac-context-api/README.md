@@ -1,8 +1,12 @@
-# React + Vite
+# Prática: Pokémons Favoritos com Context API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Neste projeto, a feature de favoritos foi incrementada com o recurso Context API.
 
-Currently, two official plugins are available:
+# Imagem do projeto final
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![screen](./src/assets/screen.jpeg)
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request com melhorias para este projeto.
+

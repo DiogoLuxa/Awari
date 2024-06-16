@@ -1,22 +1,22 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from 'react';
 
 // prop-types
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 // utils
-import { fetchPokemonList, fetchPokemonDetails } from "../utils/api";
+import { fetchPokemonList, fetchPokemonDetails } from '../utils/api';
 
 // context
 const PokedexContext = createContext();
 
 // local storage
-const likedStorage = JSON.parse(localStorage.getItem("liked")) || [];
+const likedStorage = JSON.parse(localStorage.getItem('liked')) || [];
 
 const PokedexProvider = ({ children }) => {
   // states
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [liked, setLiked] = useState(likedStorage);
   const [count, setCount] = useState(0);
   const [clickedPokemon, setClickedPokemon] = useState(null);
@@ -53,7 +53,7 @@ const PokedexProvider = ({ children }) => {
       try {
         const data = await fetchPokemonList();
         const promises = data.map((pokemon) =>
-          fetchPokemonDetails(pokemon.url)
+          fetchPokemonDetails(pokemon.url),
         );
         const pokemonsData = await Promise.all(promises);
         setPokemons(pokemonsData);
@@ -78,7 +78,7 @@ const PokedexProvider = ({ children }) => {
       setLiked((prevLiked) => {
         if (prevLiked.includes(clickedPokemon)) {
           return prevLiked.filter(
-            (likedPokemon) => likedPokemon !== clickedPokemon
+            (likedPokemon) => likedPokemon !== clickedPokemon,
           );
         }
         return [...prevLiked, clickedPokemon];
@@ -87,7 +87,7 @@ const PokedexProvider = ({ children }) => {
   }, [count, clickedPokemon, timeoutId]);
 
   useEffect(() => {
-    localStorage.setItem("liked", JSON.stringify(liked));
+    localStorage.setItem('liked', JSON.stringify(liked));
   }, [liked]);
 
   return (

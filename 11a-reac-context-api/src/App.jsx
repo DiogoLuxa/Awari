@@ -1,14 +1,14 @@
-import { React, useContext } from "react";
+import { React, useContext } from 'react';
 
 // context
-import { PokedexContext } from "./context/PokedexContext";
+import { PokedexContext } from './context/PokedexContext';
 
 // components
-import CardList from "./components/CardList";
+import CardList from './components/CardList';
 
 // img
-import logo from "./assets/icons8-pokeball.png";
-import psyduck from "./assets/psyduck.jpg";
+import logo from './assets/icons8-pokeball.png';
+import psyduck from './assets/psyduck.jpg';
 
 // App
 function App() {
