@@ -10,4 +10,7 @@ export default [
     languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
   },
   pluginReactConfig,
+  {
+    ignores: ['**/*.test.js'],
+  },
 ];

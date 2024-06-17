@@ -9,6 +9,7 @@ function HeartIcon({ id, liked }) {
   const { handleLike } = useContext(PokedexContext);
   return (
     <svg
+      data-testid="heart-icon"
       onClick={(e) => {
         e.stopPropagation();
         handleLike(id);
